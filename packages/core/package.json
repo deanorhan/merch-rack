@@ -1,0 +1,19 @@
+{
+  "name": "@merch-rack/core",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "sst bind vitest",
+    "typecheck": "tsc -noEmit"
+  },
+  "dependencies": {
+    "winston": "^3.8.2"
+  },
+  "devDependencies": {
+    "@aws/dynamodb-data-mapper": "^0.7.3",
+    "@aws/dynamodb-data-mapper-annotations": "^0.7.3",
+    "@types/node": "^18.16.1",
+    "sst": "^2.7.2",
+    "vitest": "^0.30.1"
+  }
+}
