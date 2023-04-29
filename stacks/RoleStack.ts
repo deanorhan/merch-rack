@@ -14,6 +14,14 @@ export function Permissions({ stack }: StackContext) {
     })
   );
 
+  role.addToPolicy(
+    new PolicyStatement({
+      effect: Effect.ALLOW,
+      actions: ['logs:*'],
+      resources: ['*'],
+    })
+  );
+
   return {
     role,
   };

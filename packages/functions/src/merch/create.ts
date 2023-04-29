@@ -1,11 +1,7 @@
-import DynamoDB from 'aws-sdk/clients/dynamodb';
-import { DataMapper } from '@aws/dynamodb-data-mapper';
 import { ApiHandler } from 'sst/node/api';
 import { Merch } from '@merch-rack/core/model/merch';
 import { randomUUID } from 'crypto';
-
-const client = new DynamoDB({ region: process.env.AWS_REGION });
-const mapper = new DataMapper({ client });
+import { mapper } from '@merch-rack/core/db';
 
 export const handler = ApiHandler(async (request) => {
   const data: Merch = JSON.parse(request.body || '{}');

@@ -7,7 +7,9 @@
     "typecheck": "tsc -noEmit"
   },
   "dependencies": {
-    "winston": "^3.8.2"
+    "moment": "^2.29.4",
+    "winston": "^3.8.2",
+    "winston-cloudwatch": "^6.1.1"
   },
   "devDependencies": {
     "@aws/dynamodb-data-mapper": "^0.7.3",

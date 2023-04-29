@@ -1,18 +1,29 @@
-import DynamoDB from 'aws-sdk/clients/dynamodb';
-import { DataMapper } from '@aws/dynamodb-data-mapper';
 import { ApiHandler } from 'sst/node/api';
+import logger from '@merch-rack/core/logger';
 import { Merch } from '@merch-rack/core/model/merch';
+import { mapper } from '@merch-rack/core/db';
 
-const client = new DynamoDB({ region: 'us-east-2' });
-const mapper = new DataMapper({ client });
+export const handler = ApiHandler(async (request, context) => {
+  logger.defaultMeta.requestId = context.awsRequestId;
 
-export const handler = ApiHandler(async (request) => {
   const id = request.pathParameters?.id;
 
-  const merch = await mapper.get(new Merch({ id }));
+  const response = await mapper
+    .get(new Merch({ id }))
+    .then((merch) => {
+      return {
+        statusCode: 200,
+        body: JSON.stringify(merch),
+      };
+    })
+    .catch((err) => {
+      logger.error(err);
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify(merch),
-  };
+      return {
+        statusCode: err.statusCode,
+        body: err.message,
+      };
+    });
+
+  return response;
 });
