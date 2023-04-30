@@ -5,6 +5,8 @@
     "baseUrl": ".",
     "paths": {
       "@merch-rack/core/*": ["../core/src/*"]
-    }
+    },
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   }
 }

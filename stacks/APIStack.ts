@@ -1,8 +1,8 @@
-import { StackContext, Api, use } from 'sst/constructs';
+import { StackContext, Api, use, Function } from 'sst/constructs';
 import { Data } from './DataStack';
 import { Permissions } from './RoleStack';
 
-export function API({ stack }: StackContext) {
+export function API({ stack, app }: StackContext) {
   stack.setDefaultFunctionProps({
     runtime: 'nodejs18.x',
   });
@@ -14,17 +14,17 @@ export function API({ stack }: StackContext) {
     role,
   });
 
+  stack.addDefaultFunctionBinding([merchTable]);
+
+  // new Function(stack, 'list-merch', {
+  //   handler: 'packages/functions/src/merch/list.handler',
+  // });
+
   const api = new Api(stack, 'api', {
-    defaults: {
-      function: {
-        // Bind the table name to our API
-        bind: [merchTable],
-      },
-    },
     routes: {
       'GET /merch': 'packages/functions/src/merch/list.handler',
       'POST /merch': 'packages/functions/src/merch/create.handler',
-      'GET /merch/{id}': 'packages/functions/src/merch/get.handler',
+      'GET /merch/{merchId}': 'packages/functions/src/merch/get.handler',
     },
   });
 

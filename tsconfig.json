@@ -1,4 +1,8 @@
 {
   "extends": "@tsconfig/node18/tsconfig.json",
-  "exclude": ["packages"]
+  "exclude": ["packages"],
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  }
 }

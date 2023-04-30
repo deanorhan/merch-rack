@@ -8,17 +8,18 @@ export function Data({ stack }: StackContext) {
       status: 'number',
       vendor: 'string',
       title: 'string',
-      priace: 'number',
+      price: 'number',
       description: 'string',
       createdAt: 'number',
       createdBy: 'string',
       modifiedAt: 'number',
       modifiedBy: 'string',
     },
-    primaryIndex: { partitionKey: 'merchId', sortKey: 'vendor' },
-    localIndexes: {
-      merchCreatedTime: { sortKey: 'createdAt' },
-      merchStatus: { sortKey: 'status' },
+    primaryIndex: { partitionKey: 'merchId' },
+    globalIndexes: {
+      merchVendor: { partitionKey: 'vendor' },
+      merchCreatedTime: { partitionKey: 'createdAt' },
+      merchStatus: { partitionKey: 'status' },
     },
     cdk: {
       table: {
@@ -39,6 +40,9 @@ export function Data({ stack }: StackContext) {
       modifiedBy: 'string',
     },
     primaryIndex: { partitionKey: 'imageId', sortKey: 'merchId' },
+    globalIndexes: {
+      imageMerch: { partitionKey: 'merchId' },
+    },
     cdk: {
       table: {
         removalPolicy: RemovalPolicy.DESTROY,

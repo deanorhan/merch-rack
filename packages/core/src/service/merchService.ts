@@ -1,7 +1,7 @@
 import DynamoDB from 'aws-sdk/clients/dynamodb';
 import { DataMapper, QueryPaginator } from '@aws/dynamodb-data-mapper';
 import { Merch } from '../model/merch';
-import { logger } from '../logger';
+import logger from '../logger';
 
 const client = new DynamoDB({ region: 'us-east-2' });
 const mapper = new DataMapper({ client });
