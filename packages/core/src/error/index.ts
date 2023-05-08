@@ -1,5 +1,3 @@
-import { APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
-
 export interface Problem {
   type: string;
   title: string;

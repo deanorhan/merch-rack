@@ -17,7 +17,7 @@ const logger = createLogger({
 });
 
 const logGroupName = `lambda/${process.env.SST_APP}`;
-const logStreamName = `${moment(new Date()).format('YYYY/MM/DD')}/[${process.env.AWS_LAMBDA_FUNCTION_VERSION}]${
+const logStreamName = `${moment().format('YYYY/MM/DD')}/[${process.env.AWS_LAMBDA_FUNCTION_VERSION}]${
   process.env.SST_FUNCTION_ID
 }`;
 

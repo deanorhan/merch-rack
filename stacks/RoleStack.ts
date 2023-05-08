@@ -18,7 +18,7 @@ export function Permissions({ stack }: StackContext) {
     new PolicyStatement({
       effect: Effect.ALLOW,
       actions: ['logs:*'],
-      resources: ['*'],
+      resources: ['arn:aws:dynamodb:us-east-2:720067309267:log-group/*'],
     })
   );
 

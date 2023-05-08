@@ -1,16 +1,13 @@
-import { StackContext, Api, use, Function } from 'sst/constructs';
+import { StackContext, Api, use } from 'sst/constructs';
 import { Data } from './DataStack';
 import { Permissions } from './RoleStack';
 
-export function API({ stack, app }: StackContext) {
-  stack.setDefaultFunctionProps({
-    runtime: 'nodejs18.x',
-  });
-
+export function API({ stack }: StackContext) {
   const { role } = use(Permissions);
   const { merchTable } = use(Data);
 
   stack.setDefaultFunctionProps({
+    runtime: 'nodejs18.x',
     role,
   });
 
